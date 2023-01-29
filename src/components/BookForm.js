@@ -21,6 +21,18 @@ export default function BookForm() {
             setError('You must be logged in to do that.')
             return
         }
+        let arr = [];
+        if (!title) {
+            arr.push('title');
+        }
+        if(!pages){
+            arr.push('pages');
+        }
+        if(arr.length > 0) {
+            setEmptyFields(arr);
+            setError('Please fill in all fields');
+            return
+        }
 
         const book = { title, pages, rating };
 
@@ -33,6 +45,7 @@ export default function BookForm() {
             setRating('');
             setPages('');
             setError(null);
+            setEmptyFields([]);
         } catch (e) {
             setError(e);
             console.log(e);

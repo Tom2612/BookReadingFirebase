@@ -2,14 +2,17 @@ import React from 'react';
 import { db } from '../firebase';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { useAuth } from '../contexts/AuthContext';
+import { useBook } from '../contexts/BookContext';
 
 export default function BookDetails({ book }) {
   const { currentUser } = useAuth();
+  const { dispatch } = useBook();
 
   const handleClick = async (book) => {
     console.log(book)
     try {
       await deleteDoc(doc(db, `user ${currentUser.uid}`, book.id));
+      dispatch({type: 'DELETE_BOOK', payload: book});
     } catch (e) {
       console.log(e.message);
     }
