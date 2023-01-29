@@ -17,11 +17,11 @@ export default function BookDetails({ book }) {
 
   return (
     <div className='book-details'>
-        <h4>{book.title}</h4>
-        <p><strong>Pages: </strong>{book.pages}</p>
-        <p><strong>Rating: </strong>{book.rating}</p>
-        {/* <p>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p> */}
-        { <span className='material-symbols-outlined' onClick={() => handleClick(book)}>delete</span>}
+      <h4>{book.title}</h4>
+      <p><strong>Pages: </strong>{book.pages}</p>
+      <p><strong>Rating: </strong>{book.rating}</p>
+      {/* <p>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p> */}
+      { <span className='material-symbols-outlined' onClick={() => handleClick(book)}>delete</span>}
     </div>
   )
 }

@@ -33,7 +33,7 @@ export default function Login() {
                     value={password}
                 />
 
-                <button>Sign up</button>
+                <button>Login</button>
                 {/* {error && <div className='error'>{error}</div>} */}
             </form>
             <div className='help-text'>Don't have an account? <Link to='/signup'>sign up here</Link></div>
