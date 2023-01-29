@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { db } from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
 import { useBook } from '../contexts/BookContext';
 
 export default function BookForm() {
 
     const { currentUser } = useAuth();
-    const { createBook } = useBook();
+    const { dispatch } = useBook();
     
     const [title, setTitle] = useState('');
     const [pages, setPages] = useState('');
@@ -23,11 +25,14 @@ export default function BookForm() {
         const book = { title, pages, rating };
 
         try {
-            createBook(book);
+            await addDoc(collection(db, 'user ' + currentUser.uid), book)
+                .then((docRef) => {
+                    dispatch({type: 'CREATE_BOOK', payload: {id: docRef.id, ...book}})
+                })
             setTitle('');
             setRating('');
             setPages('');
-            setError(null)
+            setError(null);
         } catch (e) {
             setError(e);
             console.log(e);

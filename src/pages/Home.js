@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import BookForm from '../components/BookForm';
 import { db } from '../firebase';
 import { getDocs, collection } from 'firebase/firestore';
 import { useAuth } from '../contexts/AuthContext';
 import BookDetails from '../components/BookDetails';
+import { useBook } from '../contexts/BookContext';
 
 export default function Home() {
   const { currentUser } = useAuth();
-  const [books, setBooks] = useState([]);
+  const { books, dispatch } = useBook();
 
   useEffect(() => {
     const getBooks = async () => {
@@ -20,12 +21,15 @@ export default function Home() {
         }
         arr.push(book);
       })
-      setBooks(arr);
+      dispatch({type: 'SET_BOOKS', payload: arr});
     }
     
-    getBooks();
+    if (currentUser) {
+      getBooks();
+    }
+    
 
-  }, [currentUser])
+  }, [currentUser, dispatch])
 
   return (
     <div className='home'>
