@@ -1,28 +1,27 @@
 import React from 'react';
-// import { useBookContext } from '../hooks/useBookContext';
-// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { db } from '../firebase';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function BookDetails({ book }) {
-//   const { dispatch } = useBookContext();
+  const { currentUser } = useAuth();
 
-//   const handleClick = async () => {
-//     const response = await fetch('http://localhost:4000/api/books/' + book._id, {
-//       method: 'DELETE'
-//     })
-//     const json = await response.json();
-
-//     if(response.ok) {
-//       dispatch({type: 'DELETE_BOOK', payload: json});
-//     }
-//   }
+  const handleClick = async (book) => {
+    console.log(book)
+    try {
+      await deleteDoc(doc(db, `user ${currentUser.uid}`, book.id));
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
 
   return (
     <div className='book-details'>
-        {/* <h4>{book.title}</h4>
+        <h4>{book.title}</h4>
         <p><strong>Pages: </strong>{book.pages}</p>
         <p><strong>Rating: </strong>{book.rating}</p>
-        <p>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p> */}
-        {/* <span className='material-symbols-outlined' onClick={handleClick}>delete</span> */}
+        {/* <p>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p> */}
+        { <span className='material-symbols-outlined' onClick={() => handleClick(book)}>delete</span>}
     </div>
   )
 }
