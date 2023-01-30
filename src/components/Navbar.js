@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useBook } from '../contexts/BookContext';
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
+  const { dispatch } = useBook();
+
   const handleClick = () => {
     logout();
+    dispatch({type: 'SET_BOOKS', payload: null});
   }
   return (
     <header>

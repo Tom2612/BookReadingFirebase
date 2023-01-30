@@ -63,7 +63,6 @@ export default function BookForm() {
             onChange={(e) => setTitle(e.target.value)} 
             value={title}
             className={emptyFields.includes('title') ? 'error' : ''}
-            required
         />
         <label>Number of Pages:</label>
         <input 
@@ -72,7 +71,6 @@ export default function BookForm() {
             onChange={(e) => setPages(e.target.value)} 
             value={pages}
             className={emptyFields.includes('pages') ? 'error' : ''}
-            required
         />
         <label>Your Rating: {rating}</label>
         <input 
