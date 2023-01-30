@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BookReadingFirebase/static/css/main.cad45bc3.css",
+    "main.js": "/BookReadingFirebase/static/js/main.3a2c5ce4.js",
+    "index.html": "/BookReadingFirebase/index.html",
+    "main.cad45bc3.css.map": "/BookReadingFirebase/static/css/main.cad45bc3.css.map",
+    "main.3a2c5ce4.js.map": "/BookReadingFirebase/static/js/main.3a2c5ce4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cad45bc3.css",
+    "static/js/main.3a2c5ce4.js"
+  ]
+}
